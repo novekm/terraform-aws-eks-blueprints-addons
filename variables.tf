@@ -4,6 +4,12 @@ variable "tags" {
   default     = {}
 }
 
+variable "region" {
+  description = "AWS region override for multi-region deployments"
+  type        = string
+  default     = null
+}
+
 variable "cluster_name" {
   description = "Name of the EKS cluster"
   type        = string
