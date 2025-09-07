@@ -26,12 +26,6 @@ You can optionally customize the Helm chart that deploys AWS for Fluent Bit via 
     repository    = "https://aws.github.io/eks-charts"
     namespace     = "kube-system"
     values        = [templatefile("${path.module}/values.yaml", {})]
-    # Custom configuration values (alternative to values)
-    configuration_values = jsonencode({
-      cloudWatchLogs = {
-        logGroupName = "/aws/eks/my-cluster/application/custom"
-      }
-    })
   }
 ```
 
