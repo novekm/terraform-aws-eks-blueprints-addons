@@ -690,7 +690,7 @@ module "aws_for_fluentbit" {
   repository       = try(var.aws_for_fluentbit.repository, "https://aws.github.io/eks-charts")
   values = concat(
     try(var.aws_for_fluentbit.values, []),
-    try(var.aws_for_fluentbit.configuration_values != null ? [var.aws_for_fluentbit.configuration_values] : [], [])
+    var.aws_for_fluentbit.configuration_values != null ? [var.aws_for_fluentbit.configuration_values] : []
   )
 
   timeout                    = try(var.aws_for_fluentbit.timeout, null)
