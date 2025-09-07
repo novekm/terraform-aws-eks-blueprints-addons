@@ -688,7 +688,10 @@ module "aws_for_fluentbit" {
   chart            = try(var.aws_for_fluentbit.chart, "aws-for-fluent-bit")
   chart_version    = try(var.aws_for_fluentbit.chart_version, "0.1.32")
   repository       = try(var.aws_for_fluentbit.repository, "https://aws.github.io/eks-charts")
-  values           = try(var.aws_for_fluentbit.values, [])
+  values = concat(
+    try(var.aws_for_fluentbit.values, []),
+    try(var.aws_for_fluentbit.configuration_values != null ? [var.aws_for_fluentbit.configuration_values] : [], [])
+  )
 
   timeout                    = try(var.aws_for_fluentbit.timeout, null)
   repository_key_file        = try(var.aws_for_fluentbit.repository_key_file, null)
